@@ -1,0 +1,2 @@
+include ':rose'
+rootProject.name = "International Women Day Apps"
