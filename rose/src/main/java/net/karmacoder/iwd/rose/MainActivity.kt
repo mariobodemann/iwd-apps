@@ -1,15 +1,19 @@
 package net.karmacoder.iwd.rose
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.hardware.Sensor
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.Choreographer
 import android.view.SurfaceView
 import com.google.android.filament.Filament
-import com.google.android.filament.Skybox
-import com.google.android.filament.gltfio.Gltfio
+import com.google.android.filament.utils.Float3
 import com.google.android.filament.utils.KtxLoader
+import com.google.android.filament.utils.Manipulator
 import com.google.android.filament.utils.ModelViewer
 import com.google.android.filament.utils.Utils
+import kotlinx.android.synthetic.main.activity_main.main_greeting_text
 import java.nio.ByteBuffer
 
 class MainActivity : Activity() {
@@ -20,22 +24,54 @@ class MainActivity : Activity() {
         }
     }
 
+    private val frameCallback = object : Choreographer.FrameCallback {
+        @SuppressLint("SetTextI18n")
+        override fun doFrame(currentTime: Long) {
+            choreographer.postFrameCallback(this)
+            modelViewer.render(currentTime)
+        }
+    }
+
     private lateinit var surfaceView: SurfaceView
     private lateinit var choreographer: Choreographer
     private lateinit var modelViewer: ModelViewer
 
+    private lateinit var sensorManager: SensorManager
+    private lateinit var rotationVectorSensor: Sensor
+
+    private val environments = arrayListOf("berlin", "centralstation", "venetian_crossroads_2k", "worldpark" )
+
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         surfaceView = findViewById(R.id.main_surface_view)
+        surfaceView.setOnTouchListener { _, event ->
+            modelViewer.onTouchEvent(event)
+            true
+        }
+
+        main_greeting_text.setOnClickListener {
+            loadEnvironment(environments.random())
+        }
+
+        sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
+        rotationVectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
 
         choreographer = Choreographer.getInstance()
-        modelViewer = ModelViewer(surfaceView)
+        modelViewer = ModelViewer(
+            surfaceView = surfaceView,
+            manipulator = Manipulator.Builder()
+                .zoomSpeed(0.05f)
+                .orbitSpeed(0.005f, 0.005f)
+                .orbitHomePosition(0f, 0f, 3f)
+                .viewport(surfaceView.width, surfaceView.height)
+                .build(Manipulator.Mode.ORBIT)
+        )
 
-        surfaceView.setOnTouchListener(modelViewer)
-
-        loadGlb("monkey")
-        loadEnvironment("venetian_crossroads_2k")
+        loadGlb("rose")
+        loadEnvironment("berlin")
     }
 
     private fun loadEnvironment(ibl: String) {
@@ -56,7 +92,7 @@ class MainActivity : Activity() {
     private fun loadGlb(name: String) {
         val buffer = readAsset("models/${name}.glb")
         modelViewer.loadModelGlb(buffer)
-        modelViewer.transformToUnitCube()
+        modelViewer.transformToUnitCube(Float3(0f, -0.5f, 0f))
     }
 
     private fun readAsset(assetName: String): ByteBuffer {
@@ -64,13 +100,6 @@ class MainActivity : Activity() {
         val bytes = ByteArray(input.available())
         input.read(bytes)
         return ByteBuffer.wrap(bytes)
-    }
-
-    private val frameCallback = object : Choreographer.FrameCallback {
-        override fun doFrame(currentTime: Long) {
-            choreographer.postFrameCallback(this)
-            modelViewer.render(currentTime)
-        }
     }
 
     override fun onResume() {

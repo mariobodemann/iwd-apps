@@ -1,8 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SurfaceView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_surface_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
-    tools:context=".MainActivity" />
+    android:layout_height="match_parent">
+
+    <SurfaceView
+        android:id="@+id/main_surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity" />
+
+    <TextView
+        android:id="@+id/main_greeting_text"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="16dp"
+        android:background="#80FFFFFF"
+        android:fontFamily="cursive"
+        android:gravity="center_horizontal"
+        android:minWidth="200dp"
+        android:padding="8dp"
+        android:text="@string/rose_main_text"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp" />
+</FrameLayout>

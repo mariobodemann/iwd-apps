@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">🌹</string>
+    <string name="app_name" translatable="false">Rose</string>
+
+    <string name="rose_main_text"><![CDATA[
+    🌹 A rose for you 🌹
+    \n\n
+    Thanks for being a big part of my life. Please enjoy this rose, it might even smell if you get close enough.
+    \n\n
+    🌹 🌹 🌹
+    ]]></string>
 </resources>
