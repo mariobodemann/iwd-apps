@@ -7,13 +7,13 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.Choreographer
 import android.view.SurfaceView
+import android.view.View
 import com.google.android.filament.Filament
 import com.google.android.filament.utils.Float3
 import com.google.android.filament.utils.KtxLoader
 import com.google.android.filament.utils.Manipulator
 import com.google.android.filament.utils.ModelViewer
 import com.google.android.filament.utils.Utils
-import kotlinx.android.synthetic.main.activity_main.main_greeting_text
 import java.nio.ByteBuffer
 
 class MainActivity : Activity() {
@@ -39,7 +39,7 @@ class MainActivity : Activity() {
     private lateinit var sensorManager: SensorManager
     private lateinit var rotationVectorSensor: Sensor
 
-    private val environments = arrayListOf("berlin", "centralstation", "venetian_crossroads_2k", "worldpark" )
+    private val environments = arrayListOf("berlin", "centralstation", "venetian_crossroads_2k", "worldpark")
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +52,7 @@ class MainActivity : Activity() {
             true
         }
 
-        main_greeting_text.setOnClickListener {
+        findViewById<View>(R.id.main_greeting_text).setOnClickListener {
             loadEnvironment(environments.random())
         }
 
