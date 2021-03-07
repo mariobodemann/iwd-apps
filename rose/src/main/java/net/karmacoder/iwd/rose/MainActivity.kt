@@ -39,7 +39,7 @@ class MainActivity : Activity() {
     private lateinit var sensorManager: SensorManager
     private lateinit var rotationVectorSensor: Sensor
 
-    private val environments = arrayListOf("berlin", "centralstation", "venetian_crossroads_2k", "worldpark")
+    private val environments = arrayListOf("berlin", "centralstation", "venetian_crossroads_2k", "worldpark", "lugano")
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,7 +71,7 @@ class MainActivity : Activity() {
         )
 
         loadGlb("rose")
-        loadEnvironment("berlin")
+        loadEnvironment(environments.random())
     }
 
     private fun loadEnvironment(ibl: String) {
