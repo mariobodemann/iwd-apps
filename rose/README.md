@@ -14,9 +14,9 @@ If you feel the backgrounds of the rose, changeable by restarting the app, or ta
 
 <table>
  <tr>
-  <td><img width=100 src="assets/screenhot1.jpg"></td>
-  <td><img width=100 src="assets/screenhot2.jpg"></td>
-  <td><img width=100 src="assets/screenhot3.jpg"></td>
+  <td><img width=100 src="assets/screenshot.jpg"></td>
+  <td><img width=100 src="assets/screenshot2.jpg"></td>
+  <td><img width=100 src="assets/screenshot3.jpg"></td>
  </tr>
 </table>
 
