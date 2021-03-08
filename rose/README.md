@@ -20,9 +20,13 @@ If you feel the backgrounds of the rose, changeable by restarting the app, or ta
  </tr>
 </table>
 
+## Google Play Store
+
+If you simply want to install the app, you can find it on [Google Play Store](https://play.google.com/store/apps/details?id=jetzt.jfdi.iwd.rose). (review pending)
+
 
 # IWD Challenge
 
 Additionally this app serves as an inspration for the [GDG Berlin Android IWD Challenge: Build an App for the Women in your lifes](https://twitter.com/Berlindroid/status/1367894353650323458?s=20), running outside of the challenge.
 
-If you simply want to install the app, you can find it on [Google Play Store](https://play.google.com/store/apps/details?id=jetzt.jfdi.iwd.rose).
+If you want to contribute your own app praising the women in your life, please checkout aboves tweet, by the end of the Friday 12th of March 2021.
