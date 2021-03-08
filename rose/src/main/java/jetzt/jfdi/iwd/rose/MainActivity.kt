@@ -1,4 +1,4 @@
-package net.karmacoder.iwd.rose
+package jetzt.jfdi.iwd.rose
 
 import android.annotation.SuppressLint
 import android.app.Activity
